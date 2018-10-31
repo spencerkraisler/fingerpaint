@@ -19,3 +19,14 @@ def threshold_area(contours):
 def handleContours(contours):
 	contours = threshold_area(contours)
 	return contours
+# buggy shit
+
+def getRectangles(contours):
+	rectangles = []
+	for cnt in contours:
+		rectangles.append(cv2.boundingRect(cnt))
+	return rectangles
+
+def drawRectangles(img, rectangles):
+	for rct in rectangles:
+		cv2.rectangle(img, rct)

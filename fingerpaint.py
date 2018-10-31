@@ -3,7 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt 
 import numpy as np 
 from backproj import mask, getHistogram
-from contours import getContours, handleContours
+from contours import getContours, handleContours, getRectangles, drawRectangles
 from convexHulls import getHullDefects, drawConvexHulls
 
 def startVideoFeed(cam_index, hist=None):
@@ -17,8 +17,6 @@ def startVideoFeed(cam_index, hist=None):
 		thresh_frame = mask(roi_hist, frame)
 		contours = getContours(thresh_frame)
 		contours = handleContours(contours)
-		hulls = getHullDefects(contours)
-		drawConvexHulls(frame, contours, hulls)
 		cv2.imshow('frame', frame)
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
@@ -26,7 +24,7 @@ def startVideoFeed(cam_index, hist=None):
 	cv2.destroyAllWindows()
 
 
-roi_img = cv2.imread('./images/hand2_roi.jpg', 3)
+roi_img = cv2.imread('./images/hand_roi.jpg', 3)
 roi_hist = getHistogram(roi_img)
 
 startVideoFeed(0)

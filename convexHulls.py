@@ -7,6 +7,7 @@ def getHullDefects(contours):
 		defects.append(cv2.convexityDefects(cnt, hull))
 	return defects
 
+
 def drawConvexHulls(img, contours, hulls):
 	for i in range(len(contours)):
 		cnt = contours[i]

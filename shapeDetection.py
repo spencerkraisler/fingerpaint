@@ -28,6 +28,7 @@ def getRectangles(contours):
 			rectangles.append((x, y, w, h))
 	# rectangles = handleRectangles(rectangles)
 	return rectangles
+
 """
 def handleRectangles(rectangles):
 	output = []

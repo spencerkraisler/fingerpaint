@@ -1,6 +1,4 @@
 import cv2
-import matplotlib
-import matplotlib.pyplot as plt 
 import numpy as np 
 from backproj import mask, getHistogram
 from contours import getContours, handleContours, getRectangles, drawRectangles
@@ -17,7 +15,9 @@ def startVideoFeed(cam_index, hist=None):
 		thresh_frame = mask(roi_hist, frame)
 		contours = getContours(thresh_frame)
 		contours = handleContours(contours)
-		cv2.imshow('frame', frame)
+		rects = getRectangles(contours)
+		drawRectangles(thresh_frame, rects)
+		cv2.imshow('frame', thresh_frame)
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
 	cap.release()

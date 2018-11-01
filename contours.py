@@ -21,12 +21,28 @@ def handleContours(contours):
 	return contours
 # buggy shit
 
+THRESH_RECT_AREA = 4000
+
 def getRectangles(contours):
 	rectangles = []
 	for cnt in contours:
-		rectangles.append(cv2.boundingRect(cnt))
+		x, y, w, h = cv2.boundingRect(cnt)
+		if w * h > THRESH_RECT_AREA:
+			rectangles.append((x, y, w, h))
+	# rectangles = handleRectangles(rectangles)
 	return rectangles
+"""
+def handleRectangles(rectangles):
+	output = []
+	for rct1 in rectangles:
+		for rct2 in rectangles:
+			if rct1 != rct2:
+				if (rct1[0] not in range(rct2[0], rct2[0] + rct2[2])) or (rct1[1] not in range(rct2[1], rct2[1] + rct2[3])):
+					output.append(rct1)
+	return output
+"""
 
 def drawRectangles(img, rectangles):
 	for rct in rectangles:
-		cv2.rectangle(img, rct)
+		x, y, w, h = rct
+		cv2.rectangle(img,(x,y),(x+w,y+h),(255,255,255), 2)

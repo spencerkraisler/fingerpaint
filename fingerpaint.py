@@ -1,8 +1,7 @@
 import cv2
 import numpy as np 
 from backproj import mask, getHistogram
-from contours import getContours, handleContours, getRectangles, drawRectangles
-from convexHulls import getHullDefects, drawConvexHulls
+from shapeDetection import getContours, handleContours, getRectangles, drawRectangles
 
 def startVideoFeed(cam_index, hist=None):
 
